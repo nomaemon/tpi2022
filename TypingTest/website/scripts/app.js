@@ -1,3 +1,10 @@
+var today = new Date()
+var expires = new Date(toda.getTime() + 365 * 24 * 60 * 1000)
+
+function getCookie() {
+    
+}
+
 // WELCOME MESSAGE + USERNAME PROMPT
 function usernameInput() {
     // a prompt to save user's name
@@ -11,3 +18,4 @@ function usernameInput() {
         document.cookie = "Name=" + person
     }
 }
+usernameInput()
