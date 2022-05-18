@@ -1,21 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/global.css">
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v4.7.0/css/all.css">
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/style.css">
     <script src="/scripts/app.js" defer></script>
     <title>TypingTest</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="NoorMohammad Alizadeh">
+    <meta name="description" content="Un site pour tester la vitesse de frappe.">
+    <link rel="shortcut icon" href="/src/favicon.png" type="image/x-icon">
 </head>
 <body>
-    <div class="header"></div>
-    <div class="app" style="border: 1px solid black ; height: 20px; width: 20px;">
+    <header>
+        <img src="/src/keyboard_64.png" alt="typing_test_logo">
+        <p>TypingTest</p>
+        <ul>
+            <li><a href="#" id="aboutPop">À propos</a></li>
+            <li><a href="https://etml.ch">ETML</a></li>
+        </ul>
+    </header>
+    <main>
+        <div class="app">
+            <div class="header">
+                <h3 id="greetMessage">Hello <span id="username">username</span></h3>
+            </div>
+            <input type="text" id="inputeQuote" name="InputQuote">
+            <div id="quote">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus non commodi, dolores porro architecto id! Laboriosam consequatur, numquam unde magnam perspiciatis temporibus et corporis aperiam, id possimus adipisci repellat! Minima.</p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="results">
+                <div class="curr-results">
+                    <p id="wpmLabel"></p>
+                    <p id="accLabel"></p>
+                </div>
+                <div class="past-resutls">
+                    <p></p>
+                </div>
+            </div>
+            <div class="options">
+                <p>Mode :</p>
+                <button name="Mode">Normal</button>
+                <p>Words :</p>
+                <button id="wordsBtnOne" class="optionBtn">15</button>
+                <button id="wordsBtnTwo" class="optionBtn">25</button>
+                <button id="wordsBtnThree" class="optionBtn">50</button>
+                <p>Time :</p>
+                <button id="timesBtnOne" class="optionBtn">15</button>
+                <button id="timesBtnTwo" class="optionBtn">30</button>
+                <button id="timesBtnThree" class="optionBtn">60</button>
+            </div>
+        </div>
+    </main>
+    <div class="tips">
+        <p></p>
     </div>
-    <section class="app" style="border: 1px solid red ;height: 20px; width: 20px;">
-    </section>
-    <div class="tips"></div>
+    <footer>
+        <p class="copyright">Copyright © 2022 TypingTest</p>
+    </footer>
 </body>
 </html>
