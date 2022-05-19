@@ -10,44 +10,49 @@
 html, body {
     margin: 0px;
     padding: 0px;
+    font-family: var(--font-mono);
 }
+.tooltip {
 
+}
+.tooltiptext {
+
+}
 /* HEADER */
-header {
+body > header {
     width: 100%;
     height: 70px;
     position: fixed;
     top: 0px;
     border-bottom: var(--border-test);
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(5, 1fr); /* same as  "repeat(5, 20%);" */
 
 }
-header > img {
+body > header img {
     grid-column-start: 1;
     margin-left: 10px;
     height: 60px;
 }
-header > p {
+body > header p {
     font-family: var(--font-scp);
     font-size: 2em;
     text-align: center;
     margin: 15px;
     grid-column-start: 3;
 }
-header > ul {
+body > header ul {
     grid-column-start: 4;
     grid-column-end: 6;
     margin: 0px;
 }
-header > ul > li {
+body > header li {
     float: right;
     padding: 25px;
     margin: 0px;
     list-style-type: none;
 }
-header > ul > li > a {
-    font-family: var(--font-mono);
+body > header a {
     text-decoration: none;
 }
 
@@ -55,7 +60,7 @@ header > ul > li > a {
 div.app {
     width: 800px;
     height: 500px;
-    margin: 200px auto auto auto;
+    margin: 100px auto auto auto;
     position: relative;
     padding: 15px;
     border: var(--border-test);
@@ -67,39 +72,48 @@ span#quoteArea {
 }
 div.content {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 15px;
     border: var(--border-test);
     width: 800px;
     padding: 15px;
     height: auto;
-    margin: 30px auto;
+    margin: 15px auto;
 }
 div.results {
     border: var(--border-test);
     grid-column-start: 1;
     grid-column-end: 3;
-    display: flex;
-    flex-direction: row;
+    /*---*/
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 10px;
 }
+div.curr-results {
+    border: var(--border-test);
+}
+div.past-resutls {
+    border: var(--border-test);
+    grid-column-start: -1;
+    grid-column-end: -4;
+}
+
 div.options {
     border: var(--border-test);
     grid-column-start: 3;
 }
 
 
-div.tips {
-    width: 350px;
+aside {
+    width: 480px;
     height: 150px;
     /*---*/
     position: absolute;
-    top: 200px;
-    right: 90px;
+    top: 100px;
+    right: 30px;
     /*---*/
     color: white;
-    background-color: darkred;
     border: var(--border-test);
-
 }
 
 /* FOOTER */
@@ -111,7 +125,7 @@ footer {
     border: var(--border-test);
 }
 .copyright {
-    font-family: var(--font-mono);
-    font-size: 0.8em;
+    font-family: var(--font-scp);
+    font-size: 0.7em;
     margin: 0px;
 }
