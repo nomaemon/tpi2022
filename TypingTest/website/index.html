@@ -29,7 +29,7 @@
                 <h3 id="greetMessage">Hello <span id="username">username</span></h3>
             </div>
             <input type="text" id="inputeQuote" name="InputQuote">
-            <div id="quote">
+            <div class="quote">
                 <p id="quoteDisplay">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus non commodi, dolores porro architecto id! Laboriosam consequatur, numquam unde magnam perspiciatis temporibus et corporis aperiam, id possimus adipisci repellat! Minima.</p>
             </div>
             <p id="timer">00</p>
@@ -40,20 +40,20 @@
                 <div class="curr-results">
                     <p id="wpmLabel">00</p> MPM
                     <p id="accLabel">00</p> %
+                    <p class="currenttime">Current time: </p>
+                    <span id="currentTime"></span>
                 </div>
                 <div class="past-resutls">
-                    <header>
-                        <p>Historiques</p>
-                        <ul class="past-result-head">
-                            <li></li>
-                        </ul>
-                    </header>
+                    <p>Historiques</p>
+                    <ul class="past-result-head">
+                        <li></li>
+                    </ul>
                     <p></p>
                 </div>
             </div>
             <div class="options">
                 <p>Mode :</p>
-                <button name="Mode" onclick="toggleMode()">Normal</button>
+                <button class="wordMode" name="Mode" id="toggleModeBtn" onclick="toggleMode()">Normal</button>
                 <p>Words :</p>
                 <button id="wordsBtnOne" class="optionBtn" onclick="setBtnOne()">20</button>
                 <button id="wordsBtnTwo" class="optionBtn" onclick="setBtnTwo()">50</button>
@@ -64,12 +64,12 @@
                 <button id="timesBtnThree" class="optionBtn" onclick="setTimerBtnThree()">60</button>
             </div>
         </div>
-        <aside>
-            <div id="tips">
-                <p></p>
-            </div>
-        </aside>
     </main>
+    <aside>
+        <div id="tips">
+            <p></p>
+        </div>
+    </aside>
     <footer>
         <p class="copyright">Copyright © 2022 ETML - TypingTest</p>
     </footer>

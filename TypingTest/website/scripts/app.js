@@ -1,22 +1,5 @@
-// var today = new Date()
-// var expires = new Date(toda.getTime() + 365 * 24 * 60 * 1000)
-
-// // WELCOME MESSAGE + USERNAME PROMPT
-// function usernameInput() {
-//     // a prompt to save user's name
-//     let person = prompt('Entrez votre nom ici:','')
-//     // ask one more time for the username if user didn't provide one
-//     if (person == null || person == '') 
-//     {
-//         let person = prompt('Si vous voulez sauvegarder votre score entrez votre nom:','')
-//     } else {
-//         // save user's name as Cookie
-//         document.cookie = "Name=" + person
-//     }
-// }
-
 // DATA
-// french words
+// french words database
 const wordsLib = [
 "de","un","et","être","il","avoir","ne","je","son","que","se","qui","en","ce","dans","du","elle","au","de","ce","le","pour","pas","que","vous","par","sur","faire","plus","dire","me","on","mon","lui","nous","comme","mais","pouvoir","avec","tout","y","aller","voir","en","bien","où","sans","tu","ou","leur","homme","si","deux","mari","moi","vouloir","te","femme","venir","quand","grand","celui","si","notre","devoir","là","jour","prendre","même","votre","tout","rien","encore","petit","aussi","quelque","dont","tout","mer","trouver","donner","temps","ça","peu","même","falloir","sous","parler","alors","main","chose","ton","mettre","savoir","yeux","passer","autre","après","regarder","toujours","puis","jamais","cela","aimer","non","heure","croire","cent","monde","entre","donc","enfant","fois","seul","autre","vers","chez","demander","jeune","jusque","très","moment","rester","répondre","tout","entendre","tête","père","fille","mille","premier","car","ni","bon","trois","coeur","ainsi","an","quatre","un","terre","contre","dieu","monsieur","voix",
 "penser","quel","arriver","maison","devant","coup","beau","connaître","devenir","air","mot","nuit","eau",
@@ -72,16 +55,19 @@ const wordsLib = [
 "naissance","loup","renoncer","complètement","extraordinaire","veiller","transformer","tracer","chute","divers","résistance","contenter","naturellement","chemise","mince","siège","patron","as","calme","mériter","printemps","angoisse","précipiter","rompre","habitant","plein","métier","caresser","étouffer","note","animer","passé","fine","fixe","casser","fusil","rond","agent","fonder","roman","plante","franchir","abattre","discuter","fatiguer","réflexion","humide","consentir","accent","curieux","repas","regretter","étendue","profondément","joindre","secours","commencement","corde","secrétaire","vaincre",
 "saison","précieux","précis","consulter","haïr","repousser","paupière","certainement","tapis","noire","chasse","nerveux","exécuter","nul","commun","exposer","clef","claire","voyager","haute","renverser","sueur","âgé","rassurer","ferme","retomber","décrire","mentir","instinct","paquet","armer","drame","absolu","savoir","mine","vision","étaler","sentier","demain","beau","blond","essuyer","planche","précéder","dehors","salut","tâche","désigner","fin","abri","détacher","recueillir","rencontre","croiser","rouge","entretenir","visible","professeur","surveiller","perdu","réserver",,"bas","lien","queue","confondre","bande","grain","mensonge","dégager"
 ]
-const capsOffChars = ["abcdefghijklmnopqrstuvwxyz"];
+const capsOffChars = ["abcdefghijklmnopqrstuvwxyz"]
 const capsOnChars = ["ABCDEFGHIJKLMNOPQRSTUVWZYZ"]
 const digits = ["0","1","2","3","4","5","6","7","8","9"]
 const symbols = ['$','£','?','-','~','.',',']
+const tempChars = "abcdefghijklmnopqrstuvwxyz"
 
 const quoteDisplayElement = document.getElementById('quoteDisplay')
 const quoteInputElement = document.getElementById('inputQuote')
 const timerElement = document.getElementById('timer')
 const usernameElement = document.getElementById('username')
 const wpmLabelElement = document.getElementById('')
+const toggleModeElement = document.getElementById('toggleModeBtn')
+const currentTime = document.getElementById('currentTime')
 
 // SETTING THE TEST TYPE: WORD COUNT MODE AND TIMER MODE
 const modeToggle = {
@@ -112,6 +98,15 @@ let selectedWordCount = wordCount.words50
 let selectedTime = timerLimit.timer30
 
 
+// CURRENT TIME
+function dateNow() {
+    // TODO : Live time
+    var date = new Date()
+    let localDateNow = date.toLocaleString()
+    currentTime.innerText = localDateNow
+}
+dateNow()
+
 // GET RANDOM FRENCH WORD
 function getRandomWords() {
     // push randomed letter "selectedWordCount" times while "join" a space between them
@@ -125,7 +120,7 @@ function getRandomWords() {
     spanCharacters(nonspanChar)
 }
 
-// LOREM IPSUM MODE
+// GET LOREM IPSUM WORDS
 function loremQuote() {
     // loop "selectedWordCount" times to make random words with random letters
     var ranQuote = "";
@@ -133,7 +128,7 @@ function loremQuote() {
         // random number between 3 and 6
         let x = Math.floor(Math.random()*6 | 0)+3
         for (i = 0; i < x; i++) {
-            ranQuote += chars.charAt(Math.floor(Math.random() * chars.length));
+            ranQuote += tempChars.charAt(Math.floor(Math.random() * tempChars.length));
         }
         // to add space after each word
         ranQuote += " ";
@@ -144,10 +139,11 @@ function loremQuote() {
     let nonspanChar = ranQuote
     spanCharacters(nonspanChar)
 }
-//  PUT EACH LETTER IN A SPAN ELEMENT SO ITS EASY TO COMPRARE THEM
+//  PUT EACH LETTER IN A SPAN ELEMENT SO ITS EASY TO COMPRARE THEM WITH WHAT -
+// -IS GOING TO BE TYPED
 function spanCharacters(nonspanChar) {
-    // create span element for each character and then give them a class name. 
-    // then append those created spans to the "quoteDisplayElement"
+    // create span element for each character and then give them a "spannedClass" class name. 
+    // then append those created spans to the "quoteDisplayElement" which is its parent
     for (character of nonspanChar) {
         const wordCharacter = document.createElement('span')
         wordCharacter.className = "spannedChars"
@@ -155,8 +151,45 @@ function spanCharacters(nonspanChar) {
         quoteDisplayElement.appendChild(wordCharacter)
     }
 }
-
+// RESTART BUTTON FUNCTION
 function newQuote() {
-    // loremQuote()
-    getRandomWords()
+    // of "toggleModeElement" has a 'LoremMode' class, get the "loremQuote" quotes
+    // else, get words from "getRandomWords" function, aka Normal Mode
+    if (toggleModeElement.classList.contains('loremMode') == true) {
+        loremQuote()        
+    }else {
+        getRandomWords()
+    }
+}
+// TOGGLE MODE CHAGE
+function toggleMode() {
+    // toggle and add "loremMode" class in toggleModeElement
+    toggleModeElement.classList.toggle('loremMode')
+    // if the name of the button is "Normal", change it into "Lorem", else trun it back into "Normal"
+    if (toggleModeElement.innerHTML === "Normal") {
+        toggleModeElement.innerHTML = "Lorem"
+    } else {
+        toggleModeElement.innerHTML = "Normal"
+    }
+    newQuote()
+}
+// SET WORDS NUMBER IN WORD MODE
+function setBtnOne() {
+    let selectedWordCount = wordCount.words20
+}
+function setBtnTwo() {
+    let selectedWordCount = wordCount.words20
+}
+function setBtnThree() {
+    let selectedWordCount = wordCount.words20
+}
+// SET TIMER VALUE IN TIMER MODE
+function setTimerBtnOne() {
+
+}
+function setTimerBtnTwo() {
+    
+}
+function setTimerBtnThree() {
+    
 }

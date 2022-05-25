@@ -1,4 +1,4 @@
-/* FONT IMPORTS */
+/* IMPORTS */
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@600&display=swap');
 :root{
@@ -7,16 +7,10 @@
     --font-scp: 'Source Code Pro', monospace;
     --border-test: 1px solid red;
 }
-html, body {
+body {
     margin: 0px;
     padding: 0px;
     font-family: var(--font-mono);
-}
-.tooltip {
-
-}
-.tooltiptext {
-
 }
 /* HEADER */
 body > header {
@@ -65,9 +59,9 @@ div.app {
     padding: 15px;
     border: var(--border-test);
 }
-span#quoteArea {
-    width: 90%;
-    height: 90%;
+div.app > div.quote {
+    width: auto;
+    height: 20em;
     border: var(--border-test);
 }
 div.content {
@@ -92,6 +86,11 @@ div.results {
 div.curr-results {
     border: var(--border-test);
 }
+p.currenttime, span#currentTime {
+    font-size: 0.7em;
+}
+
+
 div.past-resutls {
     border: var(--border-test);
     grid-column-start: -1;
@@ -112,7 +111,6 @@ aside {
     top: 100px;
     right: 30px;
     /*---*/
-    color: white;
     border: var(--border-test);
 }
 
