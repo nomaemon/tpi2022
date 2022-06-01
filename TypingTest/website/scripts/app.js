@@ -5,50 +5,50 @@ const wordsLib = [
 "penser","quel","arriver","maison","devant","coup","beau","connaître","devenir","air","mot","nuit","eau",
 "sentir","vieux","sembler","moins","tenir","ici","comprendre","oui","rendre","toi","vingt","depuis",
 "attendre","sortir","ami","trop","porte","lequel","chaque","amour","pendant","déjà","pied","tant","gens",
-"parce que","nom","vivre","entrer","reprendre","porter","pays","ciel","avant","frère","regard","chercher","âme",
-"côté","mort","enfin","revenir","noir","esprit","maintenant","nouveau","ville","rue","appeler","soir",
-"chambre","mourir","pas","partir","cinq","soleil","dernier","jeter","dix","roi","état","corps","beaucoup","suivre","bras",
-"écrire","blanc","montrer","tomber","place","ouvrir","ah","parti","assez","leur","cher","voilà","année","loin","point",
+"parce que","nom","vivre","entrer,","8","porter","pays.","ciel","avant","frère","regard","chercher","âme",
+"côté","mort","enfin","revenir","noir","esprit","9","nouveau","ville","rue","appeler","soir",
+"?","mourir","pas","partir","cinq","soleil","dernier","jeter","dix","roi","état","corps","beaucoup","suivre","bras",
+"écrire","?","montrer","7","place","ouvrir","ah","parti","assez","leur","cher","voilà","année","loin","point",
 "visage","bruit","lettre","franc","fond","force","effet","arrêter","perdre","commencer","paraître","aucun","marcher",
-"milieu","saint","idée","presque","ailleurs","travail","lumière","long","seulement","mois","fils","neuf","tel",
+"milieu","saint","idée.","presque","ailleurs","travail","lumière","long","seulement","mois","fils","neuf","tel",
 "lever","raison","gouvernement","permettre","pauvre","asseoir","point","plein","personne","vrai","peuple",
-"fait","parole","guerre","toute","écouter","pensée","affaire","quoi","matin","pierre","monter","bas","vent",
-"doute","front","ombre","part","maître","aujourd'hui","besoin","question","apercevoir","recevoir","mieux","peine",
-"tour","servir","oh","autour","près","finir","famille","pourquoi","souvent","rire","dessus","madame","sorte",
-"figure","droit","eh","peur","bout","lieu","silence","gros","chef","six","bois","mari","histoire","crier",
-"jouer","feu","tourner","doux","longtemps","fort","heureux","comme","garder","partie","face","mouvement","fin",
-"reconnaître","quitter","personne","comment","route","dès","manger","livre","arbre","courir","cas","huit",
-"lorsque","mur","ordre","continuer","est","bonheur","oublier","descendre","haut","intérêt","cacher","l'un",
+"fait","parole","guerre","toute","63","pensée","23","quoi","matin","pierre","monter","bas","vent",
+"doute","front","8","part","maître","aujourd'hui","besoin","question","apercevoir","recevoir","mieux","peine",
+"tour","?","$","autour","près","finir","famille","pourquoi.","souvent","rire","dessus","madame","sorte",
+"figure","droit","eh","peur",".","lieu","silence","gros","chef","six","bois","mari","histoire","crier",
+"jouer","feu...","6","doux","longtemps","fort","heureux","comme","garder","partie","face","mouvement","fin",
+"reconnaître","quitter","personne","21","route","dès","manger","livre","arbre","courir","cas","huit",
+"lorsque","mur","55","continuer","est",",","oublier",";","haut","intérêt","cacher","l'un",
 "chacun","profond","argent","cause","poser","autant","travers","grand","instant","façon","oeil","d'abord",
 "tirer","forme","présenter","ajouter","agir","retrouver","chemin","cheveu","offrir","surtout","certain","plaisir","suite","apprendre","malgré","tuer","rouge","sang","retourner","rencontrer",
 "sentiment","fleur","cependant","service","envoyer","plusieurs","table","vite","paix","moyen","dormir","pousser","lit","humain","voiture","rappeler","être","lire","général","nature","or","pouvoir","nouveau","français","joie","sept","tard","président","pourtant","bouche","changer",
-"petit","essayer","froid","compter","occuper","sens","cri","expliquer","espèce","cheval","loi","sombre","ci","sûr","voici",
-"ancien","tandis que","frapper","ministre","puisque","selon","travailler","propre","obtenir","rentrer","mal","pleurer","répéter","société","parfois","politique","oreille","payer","politique",
+"petit","essayer","froid","compter",";","sens","cri","expliquer","espèce","cheval","loi","sombre","ci","sûr","voici",
+"ancien","tandis que","frapper","ministre","puisque,","selon","travailler","propre","obtenir","rentrer","mal","pleurer","répéter","société","parfois","politique","oreille","payer","politique",
 "apporter","fenêtre","derrière","possible","fortune","compte","champ","manier","vraiment","immense","exister",
-"action","boire","public","garçon","pareil","exemple","bleu","sourire","couleur","coucher","papier","d'autres","mal","fort","bientôt","causer","pièce","montagne","sol","oeuvre","partout","trente","cours","raconter","songer","serrer","désir","manquer",
-"cour","nommer","bord","douleur","conduire","salle","saisir","premier","comment","entier","projet","demeurer","simple","étude","remettre","journal","geste","disparaître","battre","toucher","situation","oiseau","nécessaire","siècle",
-"apparaître","souffrir","million","prix","groupe","centre","malheur","honneur","fermer","accepter","garde","mauvais","tendre","naître","sauver","problème","parmi","larme","avancer","chien","peau","reste","traverser","nombre","debout","mesure","social","souvenir",
-"article","vue","couvrir","âge","gagner","système","long","former","plaire","effort","embrasser","rêve","oser","afin de","passion",
+"action","boire","public","45","pareil","exemple","bleu","sourire","couleur","coucher","papier","d'autres","mal","fort","bientôt","causer","pièce","montagne","sol","oeuvre","partout","trente","cours","raconter","songer","serrer","désir","manquer",
+"cour","nommer","bord","douleur.","conduire","salle?","saisir","premier","comment","entier","projet","demeurer","simple","étude","remettre","journal","geste","disparaître","battre","toucher","situation","oiseau","nécessaire","siècle",
+"apparaître","souffrir","113","prix","groupe","centre","malheur","honneur","fermer","accepter","garde","mauvais","tendre","naître","sauver","problème","parmi","larme","avancer","chien","peau","reste","traverser","nombre","debout","mesure","social","souvenir",
+"article","vue","couvrir","âge","gagner!","système","long","5","plaire","effort","embrasser","rêve","oser","afin de","passion",
 "auquel","empêcher","rapport","refuser","important","décider","produire","soldat","signe","lèvre","vérité","charger","mariage","mêler","certain","espérer","plan","ressembler","cesser","dos","marche","souvenir","dame","chanter","plutôt","conseil","sou","triste",
-"coin","jardin","joli","soit","doigt","objet","fer","lendemain","lentement","combien","approcher","prier","train","papa","différent","valeur","jeu","échapper","glisser","secret","haut","vieillard","briller","docteur","brûler","terrible","placer","ton","jambe","juger","suffire","endroit","minute","nuage",
+"coin","jardin","joli","soit","doigt","objet","4","lendemain","lentement","combien","approcher","prier","train","papa","différent","valeur","jeu","échapper","glisser","secret","haut","vieillard","briller","docteur","brûler","terrible","placer","ton","jambe","juger","suffire","endroit","minute","nuage",
 "atteindre","présence","fou","épaule","léger","liberté","feuille","journée","libre","annoncer","avenir","sourire","hier","résultat","élever","acheter","préparer","mener","pourquoi","hôtel","semaine","forêt",
 "assurer","pur","qualité","prince","bien","également","deviner","médecin","considérer","volonté","seigneur","quelque","vert","moindre",
-"art","demain","quarante","cinquante","foule","appartenir","ligne","aussitôt","représenter","tromper","intérieur","vendre","beauté","riche","craindre","étrange","emporter","ensuite","soin","naturel","hasard","puis","condition","quinze","classe","voyage","expression","présent",
+"art","3","quarante","256","foule","appartenir",'"',"aussitôt","représenter","tromper","intérieur","vendre","beauté","riche","craindre","étrange","emporter","ensuite","soin","naturel","hasard","puis","condition","quinze","classe","voyage","expression","présent",
 "auprès","ensemble","caractère","attention","gris","exprimer","or","rouler","faible","posséder","scène","réveiller","difficile","français","foi","aider","découvrir","odeur","choisir","musique","oncle","événement","prononcer","village","taire","envie","midi","herbe","vieux","pluie",
-"près","bas","rêver","appuyer","étendre","après","général","lutte","trembler","réponse","grâce","espace","habitude","défendre","mémoire","existence","grave","créer","maintenir","verre","campagne","quelqu'un","juge",
+"près","bas","rêver","appuyer","!","après","général","lutte","trembler","réponse","grâce","espace","habitude","défendre","mémoire","existence","grave","créer","maintenir","verre","campagne","quelqu'un","juge",
 "genou","impossible","fête","indiquer","prêt","promettre","relever","abandonner","ignorer","parent","large","colère","étoile","devoir","conscience","accompagner","immobile","adresser","observer","puissance",
 "juste","matière","sable","séparer","marier","prévoir","vivant","accord","hiver","retour","autrefois","genre","d'autres","vif","amener","obliger","acte","image","horizon","éclairer",
-"poursuivre","livrer","danger","rôle","escalier","goût","bête","ceci","recherche","membre","pain","phrase","contenir","rire","fuir","couler","terme","en","eaux","moyen","police","rocher","tranquille","proposer","unique","éprouver","retenir","type","vin","supérieur","attacher","voler","sec","justice","entraîner","passage","époque","somme","science",
-"surprendre","côte","doucement","gauche","faute","école","ensemble","bon","rayon","briser","sujet","imaginer","diriger","douze","l'une","dernier","avis","parvenir","ouvert","pénétrer","poète","meilleur","paysan","remarquer","éviter","chair","soudain","succès","île","établir","réussir",
+"@","livrer","danger","rôle!","escalier","goût","bête;","ceci","recherche","membre","pain","phrase","contenir","rire","fuir","couler","terme","en","eaux","moyen","police","rocher","tranquille","proposer","unique","éprouver","retenir","type","vin","supérieur","attacher","voler","sec","justice","entraîner","passage","époque","somme","science",
+"surprendre","côte","90","gauche","faute","école","ensemble","bon","rayon","briser","sujet","imaginer","diriger","douze","l'une","dernier","avis","parvenir","ouvert","pénétrer","poète","meilleur","paysan","remarquer","éviter","chair","soudain","succès","île","établir","réussir",
 "pencher","habiter","entourer","détail","déclarer","réalité","arme","confiance","masse","crise","poste","étonner","dresser","durer","faux","fixer","depuis","énorme","principe","direction","taille","désirer","santé","ventre","marché","entrée","puissant","simplement","tellement","environ","arracher","soutenir","couper","trou","examiner","inconnu","pont","lune","dehors","certes","robe","beaux","douter",
 "retirer","cesse","brusquement","source","espoir","camarade","quant à","dent","cou","connaissance","but","vague","promener","élément","fil","voie","nez","forcer",
 "particulier","maladie","discours","chaleur","gloire","vide","revoir","aide","début","ennemi","second","flamme","aile","véritable","chaise","sein","lourd","toit","remplir","vaste","terminer","nu","poussière","nord","tenter","émotion","un","hors","remonter","théâtre","révolution","armée","court","noir","semblable","appartement","installer","haine","jeune","position",
 "seconde","frais","appel","soulever","allumer","imposer","avant","respirer","droite","baisser","arrière","poitrine","mort","jeunesse","bureau","sac","étranger","courage","souffler","jaune",
 "page","étranger","etc","miser","passé","rapide","digne","chaud","propos","attirer","prêter","clair","amuser","occasion","voile","éclater","importance","quartier","soi",
-"auteur","religion","réunir","palais","traiter","flot","engager","intelligence","tantôt","voisin","carte","secret","animal","traîner","été","morceau","cabinet","employer","capable","souffrance","marquer","prouver","titre","importer",
-"désert","spectacle","facile","exiger","reposer","fier","départ","danser","saluer","demande","lueur","joue","saint","accorder","prière","achever",
+"auteur","religion","2","palais","traiter","flot","engager","intelligence","tantôt","voisin","carte","secret","animal","traîner","été","morceau","cabinet","employer","capable","souffrance","marquer","prouver","titre","importer",
+"désert","spectacle","facile","78","reposer","fier","départ","danser","saluer","demande","lueur","joue","saint","accorder","prière","achever",
 "avouer","emmener","distinguer","fonction","durant","haut","sommeil","aspect","éclat","moitié","demi","calme","contraire","colline","agiter","hésiter","terrain","rare","sonner","poids","changement","charge","davantage","composer","enlever","poche","rejoindre","son","intérieur","veille","ramener","fruit","étudier","complet","partager","croix","suivant","chasser","interrompre","éloigner","trésor",
-"compagnie","étroit","cuisine","réduire","égal","empire","nation","recommencer","éteindre","sauter","plaindre","conversation","soirée","violent","trait","impression","devant","préférer","révéler","sien","magnifique","désespoir","témoin","visite","respect","solitude","subir","prochain","delà","anglais","rapporter","coûter","réfléchir","remercier",
+"compagnie","1","cuisine","réduire","égal","empire","nation","recommencer","éteindre","sauter","plaindre","conversation","soirée","violent","trait","impression","devant","préférer","révéler","sien","magnifique","désespoir","témoin","visite","respect","solitude","subir","prochain","delà","anglais","rapporter","coûter","réfléchir","remercier",
 "officier","déposer","fauteuil","tôt","fumer","affirmer","relation","fumée","convenir","malade","branche","circonstance","ouvrage","compagnon","vêtir","port",
 "expérience","avec","accomplir","résoudre","plonger","mien","goutte","chant","détruire","combat","personnage","aventure","intéresser","disposer","absence","machine","aucun","grâce","chaîne","honte","lisser","fait","faim","plaine","verser","pointe","preuve","obéir","éternel","lutter","prétendre","énergie","construire","bataille","victime","sauvage","usage","soumettre","peser","double","tache","guère","troubler","hauteur","tendre","curiosité","beau","répandre","glace","résister","froid","prison","étage","sérieux","droit","billet","protéger","pauvre","rose","enfermer","dur","attitude","mode","neuf","grandir","creuser","crainte","enfoncer","vêtement","envelopper","vague","prévenir","violence","inspirer",,"inutile","content","folie","pitié","courant","ramasser","intention","endormir","inventer","trace","toile","presser","confier","effacer","reculer","user","blanc","nourrir","dangereux","poésie","sommet","remplacer","souhaiter","avance","autorité","épais","inquiétude","choix","tombe","marchand",,"nombreux","muet","signer","absolument","interroger","cercle","dominer","défaut","enfance","réel","faveur","commander","supposer","dépasser","sourd","cruel","erreur","dimanche","cerveau","accuser","arrivée","rapidement","vol","habiller","condamner","lors","menacer","seuil","écraser","perte","troisième","chance","vieil","même","céder","droite","douceur","vide","autrement","ruine","drôle","écarter","rang","réclamer","chiffre","voisin","militaire","roche","distance","apparence","dessiner","conclure","lier",
 "françois","discussion","terreur","admettre","banc","vers","attaquer","respecter","rose","silencieux","course","anglais","portier","chat","pendre","supporter","tempête","quart","parfaitement","paysage","figurer","profiter","accrocher","calmer","satisfaire","public","valoir","race","barbe","signifier","couche","inquiéter","désormais","colon","fidèle","rideau","assister","inviter","déchirer","risquer","fatigue","règle","parcourir","gauche","présent","rejeter",
@@ -66,7 +66,8 @@ const quoteDisplayElement = document.getElementById('quoteDisplay')
 const quoteInputElement = document.getElementById('inputQuote')
 const timerElement = document.getElementById('timer')
 const usernameElement = document.getElementById('username')
-const wpmLabelElement = document.getElementById('')
+const greetMessageElement = document.getElementById('greetMessage')
+const wpmLabelElement = document.getElementById('wpmLabel')
 const toggleModeElement = document.getElementById('toggleModeBtn')
 const currentTimeElement = document.getElementById('currentTime')
 const toggleTestModeElement = document.getElementById('testModeBtn')
@@ -74,15 +75,11 @@ const toggleTestModeElement = document.getElementById('testModeBtn')
 const wordsBtnOneElement = document.getElementById('wordsBtnOne')
 const wordsBtnTwoElement = document.getElementById('wordsBtnTwo')
 const wordsBtnThreeElement = document.getElementById('wordsBtnThree')
-// SELECT ALL ELEMENTS CONTAINING THIS CLASS
+// SELECT ALL ELEMENTS CONTAINING THIS CLASS USING "QUERYSELECTORALL"
 const wordsBtnElements = document.querySelectorAll('.wordsOptionBtn')
 const timerOptionBtnElements = document.querySelectorAll('.timerOptionBtn')
 
-// SETTING THE TEST TYPE: WORD COUNT MODE AND TIMER MODE
-const modeToggle = {
-    mode1:1,
-    mode2:2
-}
+
 // SETTING WORDS COUNT FOR "WORDS" MODE
 const wordCount = {
     words20:20,
@@ -106,6 +103,46 @@ let selectedWordCount = wordCount.words50
 let selectedTime = timerLimit.timer30
 let remainingTime = selectedTime
 
+// BEFOR STARTING
+// input element is focused and player can instantly start typing
+window.document.getElementById('inputQuote').focus()
+// ready a new quote to type everytime user refresh the website
+newQuote()
+
+// START TYPING
+quoteInputElement.addEventListener('input', () =>{
+    const quoteArray = quoteDisplayElement.querySelectorAll('span')
+    const inputArray = quoteInputElement.value.split('')
+
+    let correct = true
+    quoteArray.forEach((spannedChar, index) => {
+        const inputChar = inputArray[index]
+        if (inputChar == null){
+            spannedChar.classList.remove('correct')
+            spannedChar.classList.remove('incorrect')
+            correct = false
+        } else if (inputChar === spannedChar.innerText){
+                spannedChar.classList.add('correct')
+                spannedChar.classList.remove('incorrect')
+        } else {
+            spannedChar.classList.remove('correct')
+            spannedChar.classList.add('incorrect')
+            correct = false
+        }
+    })
+})
+
+// START COUNTING DOWN TIMER
+function startTimer() {
+    if(remainingTime > 0) {
+        remainingTime--;
+        timerElement.innerText = remainingTime;
+        
+    }else {
+        clearInterval(timer)
+    }
+}
+
 // CURRENT TIME
 function dateNow() {
     // every time this function is called, it gets the current time and date
@@ -117,11 +154,11 @@ function dateNow() {
 
 // GET RANDOM FRENCH WORD
 function getRandomWords() {
+
     // push random letter "selectedWordCount" times while "join" a space between them
     var sentence = []
     var x = selectedWordCount
     while(--x) sentence.push(wordsLib[Math.floor(Math.random() * wordsLib.length)])
-    quoteDisplayElement.innerHTML = sentence.join(" ")
 
     // send the value to span function
     let nonspanChar = sentence.join(" ")
@@ -142,7 +179,6 @@ function loremQuote() {
         ranQuote += " ";
     }
     // TODO: add multiple words
-    quoteDisplayElement.innerText = ranQuote;
     // pass the value to "spanCharacters" function
     let nonspanChar = ranQuote
     spanCharacters(nonspanChar)
@@ -247,3 +283,16 @@ function setTimerBtnThree() {
 function setTimerElement() {
     timerElement.innerText = remainingTime
 }
+
+
+// USERNAME REGISTER
+// let username = prompt("Hi! Type your name if you want to login:", "")
+// if (username == "" || username == null && usernameCookie == "") {
+//     greetMessageElement.innerText = "You are not Logged! refresh to login"
+//     greetMessageElement.style.color = "Red"
+// } else {
+//     var usernameCookie = document.cookie = "username=" + username
+//     usernameElement.innerText = usernameCookie
+//     usernameElement.style.color = "Green"
+// }
+
