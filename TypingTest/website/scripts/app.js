@@ -59,6 +59,7 @@ const capsOffChars = ["abcdefghijklmnopqrstuvwxyz"]
 const capsOnChars = ["ABCDEFGHIJKLMNOPQRSTUVWZYZ"]
 const digits = ["0","1","2","3","4","5","6","7","8","9"]
 const symbols = ['$','£','?','-','~','.',',']
+// character temporaire
 const tempChars = "abcdefghijklmnopqrstuvwxyz"
 
 const quoteDisplayElement = document.getElementById('quoteDisplay')
@@ -67,7 +68,15 @@ const timerElement = document.getElementById('timer')
 const usernameElement = document.getElementById('username')
 const wpmLabelElement = document.getElementById('')
 const toggleModeElement = document.getElementById('toggleModeBtn')
-const currentTime = document.getElementById('currentTime')
+const currentTimeElement = document.getElementById('currentTime')
+const toggleTestModeElement = document.getElementById('testModeBtn')
+
+const wordsBtnOneElement = document.getElementById('wordsBtnOne')
+const wordsBtnTwoElement = document.getElementById('wordsBtnTwo')
+const wordsBtnThreeElement = document.getElementById('wordsBtnThree')
+// SELECT ALL ELEMENTS CONTAINING THIS CLASS
+const wordsBtnElements = document.querySelectorAll('.wordsOptionBtn')
+const timerOptionBtnElements = document.querySelectorAll('.timerOptionBtn')
 
 // SETTING THE TEST TYPE: WORD COUNT MODE AND TIMER MODE
 const modeToggle = {
@@ -86,7 +95,6 @@ const timerLimit = {
     timer30:30,
     timer60:60
 }
-let wordsTable = []
 
 // INITIALIZING RESULT ATTRIBUTS
 let timer = 00
@@ -96,20 +104,20 @@ let acc = 00
 // DEFAULT VALUES
 let selectedWordCount = wordCount.words50
 let selectedTime = timerLimit.timer30
-
+let remainingTime = selectedTime
 
 // CURRENT TIME
 function dateNow() {
-    // TODO : Live time
+    // every time this function is called, it gets the current time and date
+    // used when a test result is saved
     var date = new Date()
     let localDateNow = date.toLocaleString()
-    currentTime.innerText = localDateNow
+    return localDateNow
 }
-dateNow()
 
 // GET RANDOM FRENCH WORD
 function getRandomWords() {
-    // push randomed letter "selectedWordCount" times while "join" a space between them
+    // push random letter "selectedWordCount" times while "join" a space between them
     var sentence = []
     var x = selectedWordCount
     while(--x) sentence.push(wordsLib[Math.floor(Math.random() * wordsLib.length)])
@@ -162,34 +170,80 @@ function newQuote() {
     }
 }
 // TOGGLE MODE CHAGE
-function toggleMode() {
+function toggleWordsMode() {
     // toggle and add "loremMode" class in toggleModeElement
     toggleModeElement.classList.toggle('loremMode')
     // if the name of the button is "Normal", change it into "Lorem", else trun it back into "Normal"
-    if (toggleModeElement.innerHTML === "Normal") {
-        toggleModeElement.innerHTML = "Lorem"
+    if (toggleModeElement.innerHTML === "Normal Words") {
+        toggleModeElement.innerHTML = "Lorem Ipsum Words"
     } else {
-        toggleModeElement.innerHTML = "Normal"
+        toggleModeElement.innerHTML = "Normal Words"
     }
     newQuote()
 }
+// SET MODE BETWEEN TIMER AND WORD COUNT
+function toggleTestMode() {
+    // toggle class name "timerMode" for the test mode button
+    toggleTestModeElement.classList.toggle('timerMode')
+    // if the button had "words count mode" name, change it into "Timer mode"
+    // and remove hidden class names from timer buttons
+    // and add the hidden class name into words cound buttons
+    if (toggleTestModeElement.innerHTML === "Word count mode") {
+        toggleTestModeElement.innerHTML = "Timer mode"
+        for (var i = 0; i < timerOptionBtnElements.length; i++){
+            timerOptionBtnElements[i].classList.remove('hidden')
+            wordsBtnElements[i].classList.add('hidden')
+        }
+    } else {
+        // else, change the burron name back into "Word count mode"
+        // remove hidden class from words buttons
+        // and add that class name into timer buttons
+        toggleTestModeElement.innerHTML = "Word count mode"
+        for (var i = 0; i < timerOptionBtnElements.length; i++) {
+            timerOptionBtnElements[i].classList.add('hidden')
+            wordsBtnElements[i].classList.remove('hidden')
+        }
+    }
+}
+
 // SET WORDS NUMBER IN WORD MODE
 function setBtnOne() {
-    let selectedWordCount = wordCount.words20
+    selectedWordCount = wordCount.words20
+    wordsBtnOneElement.classList.add('active')
+    wordsBtnTwoElement.classList.remove('active')
+    wordsBtnThreeElement.classList.remove('active')
+    newQuote()
 }
 function setBtnTwo() {
-    let selectedWordCount = wordCount.words20
+    selectedWordCount = wordCount.words50
+    wordsBtnOneElement.classList.remove('active')
+    wordsBtnTwoElement.classList.add('active')
+    wordsBtnThreeElement.classList.remove('active')
+    newQuote()
 }
 function setBtnThree() {
-    let selectedWordCount = wordCount.words20
+    selectedWordCount = wordCount.words70
+    wordsBtnOneElement.classList.remove('active')
+    wordsBtnTwoElement.classList.remove('active')
+    wordsBtnThreeElement.classList.add('active')
+    newQuote()
 }
 // SET TIMER VALUE IN TIMER MODE
 function setTimerBtnOne() {
-
+    selectedTime = timerLimit.timer15
+    remainingTime = selectedTime
+    setTimerElement()
 }
 function setTimerBtnTwo() {
-    
+    selectedTime = timerLimit.timer30
+    remainingTime = selectedTime
+    setTimerElement()
 }
 function setTimerBtnThree() {
-    
+    selectedTime = timerLimit.timer60
+    remainingTime = selectedTime
+    setTimerElement()
+}
+function setTimerElement() {
+    timerElement.innerText = remainingTime
 }

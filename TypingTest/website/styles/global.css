@@ -7,6 +7,12 @@
     --font-scp: 'Source Code Pro', monospace;
     --border-test: 1px solid red;
 }
+.hidden {
+    display: none;
+}
+.active {
+    border: solid 2px black;
+}
 body {
     margin: 0px;
     padding: 0px;
@@ -86,22 +92,15 @@ div.results {
 div.curr-results {
     border: var(--border-test);
 }
-p.currenttime, span#currentTime {
-    font-size: 0.7em;
-}
-
-
 div.past-resutls {
     border: var(--border-test);
     grid-column-start: -1;
     grid-column-end: -4;
 }
-
 div.options {
     border: var(--border-test);
     grid-column-start: 3;
 }
-
 
 aside {
     width: 480px;
