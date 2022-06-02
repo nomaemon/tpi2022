@@ -7,19 +7,6 @@
     --font-scp: 'Source Code Pro', monospace;
     --border-test: 1px solid red;
 }
-.hidden {
-    display: none;
-}
-.active {
-    border: solid 2px black;
-}
-.correct {
-    color: yellow;
-}
-.incorrect {
-    color: grey;
-    text-decoration: line-through;
-}
 body {
     margin: 0px;
     padding: 0px;
@@ -132,4 +119,18 @@ footer {
     font-family: var(--font-scp);
     font-size: 0.7em;
     margin: 0px;
+}
+/* ------------------------------ */
+.hidden {
+    display: none;
+}
+.active {
+    border: solid 2px black;
+}
+.correct {
+    color: yellow;
+}
+.incorrect {
+    color: grey;
+    text-decoration: line-through;
 }

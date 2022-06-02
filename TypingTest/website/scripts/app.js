@@ -161,6 +161,7 @@ function getRandomWords() {
     while(--x) sentence.push(wordsLib[Math.floor(Math.random() * wordsLib.length)])
 
     // send the value to span function
+    quoteDisplayElement.innerText = ""
     let nonspanChar = sentence.join(" ")
     spanCharacters(nonspanChar)
 }
@@ -180,6 +181,7 @@ function loremQuote() {
     }
     // TODO: add multiple words
     // pass the value to "spanCharacters" function
+    quoteDisplayElement.innerText = ""
     let nonspanChar = ranQuote
     spanCharacters(nonspanChar)
 }
@@ -191,7 +193,7 @@ function spanCharacters(nonspanChar) {
     for (character of nonspanChar) {
         const wordCharacter = document.createElement('span')
         wordCharacter.className = "spannedChars"
-        wordCharacter.innerHTML = character
+        wordCharacter.innerText = character
         quoteDisplayElement.appendChild(wordCharacter)
     }
 }
