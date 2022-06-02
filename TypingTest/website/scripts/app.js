@@ -1,5 +1,5 @@
-// DATA
-// french words database
+//--DATA
+//--french words database
 const wordsLib = [
 "de","un","et","être","il","avoir","ne","je","son","que","se","qui","en","ce","dans","du","elle","au","de","ce","le","pour","pas","que","vous","par","sur","faire","plus","dire","me","on","mon","lui","nous","comme","mais","pouvoir","avec","tout","y","aller","voir","en","bien","où","sans","tu","ou","leur","homme","si","deux","mari","moi","vouloir","te","femme","venir","quand","grand","celui","si","notre","devoir","là","jour","prendre","même","votre","tout","rien","encore","petit","aussi","quelque","dont","tout","mer","trouver","donner","temps","ça","peu","même","falloir","sous","parler","alors","main","chose","ton","mettre","savoir","yeux","passer","autre","après","regarder","toujours","puis","jamais","cela","aimer","non","heure","croire","cent","monde","entre","donc","enfant","fois","seul","autre","vers","chez","demander","jeune","jusque","très","moment","rester","répondre","tout","entendre","tête","père","fille","mille","premier","car","ni","bon","trois","coeur","ainsi","an","quatre","un","terre","contre","dieu","monsieur","voix",
 "penser","quel","arriver","maison","devant","coup","beau","connaître","devenir","air","mot","nuit","eau",
@@ -59,8 +59,8 @@ const capsOffChars = ["abcdefghijklmnopqrstuvwxyz"]
 const capsOnChars = ["ABCDEFGHIJKLMNOPQRSTUVWZYZ"]
 const digits = ["0","1","2","3","4","5","6","7","8","9"]
 const symbols = ['$','£','?','-','~','.',',']
-// character temporaire
-const tempChars = "abcdefghijklmnopqrstuvwxyz"
+//--character temporaire
+const tempChars = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz123456789abcdefghijklmnopqrstuvwxyz.,!?"
 
 const quoteDisplayElement = document.getElementById('quoteDisplay')
 const quoteInputElement = document.getElementById('inputQuote')
@@ -71,45 +71,60 @@ const wpmLabelElement = document.getElementById('wpmLabel')
 const toggleModeElement = document.getElementById('toggleModeBtn')
 const currentTimeElement = document.getElementById('currentTime')
 const toggleTestModeElement = document.getElementById('testModeBtn')
+const quoteElement = document.getElementById('quote')
+const blurPanelElement = document.getElementById('blurPanel')
 
 const wordsBtnOneElement = document.getElementById('wordsBtnOne')
 const wordsBtnTwoElement = document.getElementById('wordsBtnTwo')
 const wordsBtnThreeElement = document.getElementById('wordsBtnThree')
-// SELECT ALL ELEMENTS CONTAINING THIS CLASS USING "QUERYSELECTORALL"
+
+const timerBtnOneElement = document.getElementById('timerBtnOne')
+const timerBtnTwoElement = document.getElementById('timerBtnTwo')
+const timerBtnThreeElement = document.getElementById('timerBtnThree')
+//--SELECT ALL ELEMENTS CONTAINING THIS CLASS USING "QUERYSELECTORALL"
 const wordsBtnElements = document.querySelectorAll('.wordsOptionBtn')
 const timerOptionBtnElements = document.querySelectorAll('.timerOptionBtn')
 
+//--MAIN MODES
+const testMode = {
+    mode1:1,
+    mode2:2
+}
 
-// SETTING WORDS COUNT FOR "WORDS" MODE
+//--SETTING WORDS COUNT FOR "WORDS" MODE
 const wordCount = {
     words20:20,
     words50:50,
     words70:70
 }
-// SETTING TIME LIMIT OPTION WHEN IN TIMER MODE
+//--SETTING TIME LIMIT OPTION WHEN IN TIMER MODE
 const timerLimit = {
     timer15:15,
     timer30:30,
     timer60:60
 }
 
-// INITIALIZING RESULT ATTRIBUTS
+//--INITIALIZING RESULT ATTRIBUTS
 let timer = 00
 let wpm = 00
 let acc = 00
+let missed = 0
 
-// DEFAULT VALUES
+
+//--DEFAULT VALUES
+let selectedTestMode = testMode.mode1
 let selectedWordCount = wordCount.words50
 let selectedTime = timerLimit.timer30
 let remainingTime = selectedTime
+let timerRunning = false
+let isTyping = false
+let interval
 
 // BEFOR STARTING
-// input element is focused and player can instantly start typing
-window.document.getElementById('inputQuote').focus()
 // ready a new quote to type everytime user refresh the website
 newQuote()
 
-// START TYPING
+//--START TYPING
 quoteInputElement.addEventListener('input', () =>{
     const quoteArray = quoteDisplayElement.querySelectorAll('span')
     const inputArray = quoteInputElement.value.split('')
@@ -127,20 +142,68 @@ quoteInputElement.addEventListener('input', () =>{
         } else {
             spannedChar.classList.remove('correct')
             spannedChar.classList.add('incorrect')
+            document.getElementById('tipsDisplay').innerText = missed
             correct = false
         }
     })
+
+    // call timer function and start counting
+    var time = (function() {
+        var exec = false
+        return function() {
+            if (!exec) {
+                exec = true
+                setInterval(startTimer, 1000)
+            }
+        }
+    })
+    time()
+
+    //--if all characters were typed correctely, get new quote
+    //--can use it for later
+    if (correct && selectedTestMode == 1) {
+        saveResults()
+        // TODOO: panel doesnt show up
+    }
 })
+// CLICK ON DISPLAYED TEXT TO FOCUS ON INPUT FIELD AND START TYPING 
+// (BECAUSE WE NO LONGER HAVE THE INPUT ELEMENT)
+quoteDisplayElement.addEventListener('click', () => {
+    quoteInputElement.focus()
+})
+
+//--OVERLAY PANEL CLICK TO RESTART UN TEST
+blurPanelElement.addEventListener('click', () => {
+    newQuote()
+    quoteInputElement.focus()
+    blurPanelElement.style.display = "none"
+})
+
+// //--MAKE A SLEEP FUNCTION
+// function sleep(milliseconds) {
+//     const date = Date.now()
+//     let currentDate = null
+//     do {
+//         currentDate = Date.now()
+//     } while (currentDate - date < milliseconds)
+// }
 
 // START COUNTING DOWN TIMER
 function startTimer() {
     if(remainingTime > 0) {
-        remainingTime--;
-        timerElement.innerText = remainingTime;
-        
-    }else {
+        remainingTime--
+        timerElement.innerText = remainingTime
+    } else {
         clearInterval(timer)
     }
+
+    // if(remainingTime > 0) {
+    //     remainingTime--;
+    //     timerElement.innerText = remainingTime;
+        
+    // }else {
+    //     clearInterval(timer)
+    // }
 }
 
 // CURRENT TIME
@@ -199,6 +262,9 @@ function spanCharacters(nonspanChar) {
 }
 // RESTART BUTTON FUNCTION
 function newQuote() {
+    quoteInputElement.value = ""
+    quoteInputElement.focus()
+    timerElement.innerText = selectedTime
     // of "toggleModeElement" has a 'LoremMode' class, get the "loremQuote" quotes
     // else, get words from "getRandomWords" function, aka Normal Mode
     if (toggleModeElement.classList.contains('loremMode') == true) {
@@ -212,10 +278,10 @@ function toggleWordsMode() {
     // toggle and add "loremMode" class in toggleModeElement
     toggleModeElement.classList.toggle('loremMode')
     // if the name of the button is "Normal", change it into "Lorem", else trun it back into "Normal"
-    if (toggleModeElement.innerHTML === "Normal Words") {
-        toggleModeElement.innerHTML = "Lorem Ipsum Words"
+    if (toggleModeElement.innerHTML === "Mots français") {
+        toggleModeElement.innerHTML = "Mots Lorem"
     } else {
-        toggleModeElement.innerHTML = "Normal Words"
+        toggleModeElement.innerHTML = "Mots français"
     }
     newQuote()
 }
@@ -226,8 +292,8 @@ function toggleTestMode() {
     // if the button had "words count mode" name, change it into "Timer mode"
     // and remove hidden class names from timer buttons
     // and add the hidden class name into words cound buttons
-    if (toggleTestModeElement.innerHTML === "Word count mode") {
-        toggleTestModeElement.innerHTML = "Timer mode"
+    if (toggleTestModeElement.innerHTML === "Nombre de mot") {
+        toggleTestModeElement.innerHTML = "Compt à rebours"
         for (var i = 0; i < timerOptionBtnElements.length; i++){
             timerOptionBtnElements[i].classList.remove('hidden')
             wordsBtnElements[i].classList.add('hidden')
@@ -236,7 +302,7 @@ function toggleTestMode() {
         // else, change the burron name back into "Word count mode"
         // remove hidden class from words buttons
         // and add that class name into timer buttons
-        toggleTestModeElement.innerHTML = "Word count mode"
+        toggleTestModeElement.innerHTML = "Nombre de mot"
         for (var i = 0; i < timerOptionBtnElements.length; i++) {
             timerOptionBtnElements[i].classList.add('hidden')
             wordsBtnElements[i].classList.remove('hidden')
@@ -269,16 +335,25 @@ function setBtnThree() {
 // SET TIMER VALUE IN TIMER MODE
 function setTimerBtnOne() {
     selectedTime = timerLimit.timer15
+    timerBtnOneElement.classList.add('active')
+    timerBtnTwoElement.classList.remove('active')
+    timerBtnThreeElement.classList.remove('active')
     remainingTime = selectedTime
     setTimerElement()
 }
 function setTimerBtnTwo() {
     selectedTime = timerLimit.timer30
+    timerBtnOneElement.classList.remove('active')
+    timerBtnTwoElement.classList.add('active')
+    timerBtnThreeElement.classList.remove('active')
     remainingTime = selectedTime
     setTimerElement()
 }
 function setTimerBtnThree() {
     selectedTime = timerLimit.timer60
+    timerBtnOneElement.classList.remove('active')
+    timerBtnTwoElement.classList.remove('active')
+    timerBtnThreeElement.classList.add('active')
     remainingTime = selectedTime
     setTimerElement()
 }
@@ -286,8 +361,16 @@ function setTimerElement() {
     timerElement.innerText = remainingTime
 }
 
+//--SAVE RESULTS
+function saveResults() {
+    //--show blured panel
+    blurPanelElement.style.display = "yes !important"
+    wpmLabelElement.innerText = "helllllo"
+    wpmLabelElement.style.color = "#a64e46"
+}
 
-// USERNAME REGISTER
+
+// USERCOOKIES
 // let username = prompt("Hi! Type your name if you want to login:", "")
 // if (username == "" || username == null && usernameCookie == "") {
 //     greetMessageElement.innerText = "You are not Logged! refresh to login"

@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v4.7.0/css/all.css">
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v1.0.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v4.7.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css">
     <link rel="stylesheet" href="/styles/global.css">
     <link rel="stylesheet" href="/styles/style.css">
     <script src="/scripts/app.js" defer></script>
@@ -16,7 +19,7 @@
   </head>
   <body>
     <header>
-      <img src="/src/keyboard_64.png" alt="typing_test_logo">
+      <img src="/src/keyboard_64_2.png" alt="typing_test_logo">
       <p>TypingTest</p>
       <ul>
         <li>
@@ -28,49 +31,58 @@
       </ul>
     </header>
     <main>
+      <!-- MAIN APP -->
       <div class="app">
         <div class="header">
-          <h3 id="greetMessage">Hello <span id="username">username</span>
-          </h3>
+          <h3 id="greetMessage">Hello <span id="username">username</span></h3>
         </div>
-        <input type="text" id="inputQuote" name="InputQuote">
+        <input type="text" id="inputQuote" name="InputQuote" autofocus>
         <div class="quote">
           <p id="quoteDisplay"></p>
         </div>
-        <p id="timer">00</p>
+        <p id="timer"></p>
         <button name="Restart" id="restartBtn" onclick="newQuote()">Redémarrer</button>
       </div>
+      <!-- OVERLAY PANEL ON APP -->
+      <div id="blurPanel" class="blur-panel" style="display: none;">
+        <span class="fa-solid fa-arrow-pointer"></span>
+        <p>Cliquez pour refair le test</p>
+      </div>
+      <!-- RESULTS & OPTIONS SECTION -->
       <div class="content">
         <div class="results">
           <div class="curr-results">
-            <p id="wpmLabel">00</p> MPM <p id="accLabel">00</p> % 
-            <p class="currenttime">Current time: </p><span id="currentTime"></span>
+            <span class="fa-solid fa-gauge-high"> : </span>
+            <p id="wpmLabel" class="results-label">00</p><p> MPM</p>
+            <span class="fas fa-circle-check"> : </span>
+            <p id="accLabel" class="results-label">00</p><p> %</p>
+            <span class="fas fa-calendar"> : </span>
+            <p id="currentTime" class="results-label">00:00:00</p>
           </div>
           <div class="past-resutls">
-            <p>Historiques</p>
-            <ul class="past-result-head">
-              <li></li>
-            </ul>
+            <h4>Historiques</h4>
+            
             <p></p>
           </div>
         </div>
         <div class="options">
-          <p>Mode : </p> 
-          <button class="wordMode" id="toggleModeBtn" onclick="toggleWordsMode()">Normal Words</button><br>
-          <p>Test mode: </p>
-          <button id="testModeBtn" onclick="toggleTestMode()">Word count mode</button>
+          <p>Generation des mots : </p> 
+          <button class="wordMode" id="toggleModeBtn" onclick="toggleWordsMode()">Mots français</button><br>
+          <p>Mode de test: </p>
+          <button id="testModeBtn" onclick="toggleTestMode()">Nombre de mot</button>
           <button id="wordsBtnOne" class="wordsOptionBtn" onclick="setBtnOne()">20</button>
           <button id="wordsBtnTwo" class="wordsOptionBtn active" onclick="setBtnTwo()">50</button>
           <button id="wordsBtnThree" class="wordsOptionBtn" onclick="setBtnThree()">70</button>
-          <button id="timesBtnOne" class="timerOptionBtn hidden" onclick="setTimerBtnOne()">15s</button>
-          <button id="timesBtnTwo" class="timerOptionBtn hidden" onclick="setTimerBtnTwo()">30s</button>
-          <button id="timesBtnThree" class="timerOptionBtn hidden" onclick="setTimerBtnThree()">60s</button>
+
+          <button id="timerBtnOne" class="timerOptionBtn hidden" onclick="setTimerBtnOne()">15s</button>
+          <button id="timerBtnTwo" class="timerOptionBtn hidden active" onclick="setTimerBtnTwo()">30s</button>
+          <button id="timerBtnThree" class="timerOptionBtn hidden" onclick="setTimerBtnThree()">60s</button>
         </div>
       </div>
     </main>
     <aside>
       <div id="tips">
-        <p></p>
+        <p id="tipsDisplay"></p>
       </div>
     </aside>
     <footer>

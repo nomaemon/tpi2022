@@ -1,0 +1,215 @@
+:root  {
+    --yellow: #f29544;
+    --black: #1b1626;
+    --dark: #2a2640;
+    --red: #734656;
+    --orange: #a64e46;
+}
+/* ------------------------------ */
+.hidden {
+    display: none;
+}
+.active {
+    color: var(--yellow);
+}
+.correct {
+    color: var(--yellow);
+}
+.incorrect {
+    color: grey;
+    text-decoration: line-through;
+}
+/* input#inputQuote {
+    display: none;
+} */
+body {
+    background-color: var(--dark);
+}
+header > img {
+    justify-self: end;
+    margin-left: 10px;
+    height: 60px;
+}
+header > p {
+    color: var(--yellow);
+}
+header a {
+    color: var(--yellow);
+}
+div.app {
+    background-color: var(--black);
+    border-radius: 1em;
+    box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+/* OVERLAY PANEL ON APP */
+div.blur-panel {    
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 1em;
+    width: 800px;
+    height: 500px;
+    margin: 100px auto auto auto;
+    padding: 15px;
+    border: solid 1px var(--yellow);
+    color: var(--yellow);
+    /* --blur-- */
+    backdrop-filter: blur(10px);
+    background-color: rgb(42 38 64 / 53%);
+    /* --grid-- */
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+}
+.blur-panel > span {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    place-self: end center;
+    font-size: 2em;
+}
+.blur-panel > p {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    place-self: center center;
+    font-size: 2em;
+}
+/* APP CONTENTS */
+p#quoteDisplay {
+    height: 100%;
+    padding: 1em;
+    margin: 0;
+    font-size: 1.5em;
+    color: var(--red)
+}
+input#inputQuote {
+    opacity: 0;
+}
+.header h3 {
+    color: var(--orange);
+    margin: 25px;
+}
+div.content {
+    background-color: var(--black);
+    border-radius: 1em;
+    box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12);
+}
+p#timer {
+    color: var(--orange);
+    font-size: 3em;
+    width: 50px;
+    margin: 0;
+    position: absolute;
+    bottom: 30px;
+    left: 40px;
+}
+button#restartBtn {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 40px;
+    bottom: 30px;
+    font-size: 1.3em;
+    color: var(--red);
+    cursor: pointer;
+    outline: inherit;
+}
+button#restartBtn:focus {
+    color: var(--yellow);
+}
+button#restartBtn:hover {
+    color: var(--yellow)           ;
+}
+div.results {
+    border: solid 1px var(--red);
+    border-radius: 0.5em;
+    padding-inline-start: 10px;
+}
+/* --- */
+div.curr-results {
+    color: var(--red);
+}
+div.curr-results >
+span {
+    grid-column-start: 1;
+}
+div.curr-results > 
+p.results-label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+    grid-column-start: 2;
+}
+.curr-results > #currentTime {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+div.past-resutls {
+    border-left: solid 1px var(--red);
+    margin: 10px;
+    padding-inline-start: 10px;
+}
+/* --- */
+div.past-resutls > 
+h4 
+{
+    color: var(--orange);
+    margin: 0 auto 10px auto;
+}
+
+div.options {
+    color: var(--red);
+}
+div.options >  
+.wordsOptionBtn, .timerOptionBtn, .wordMode, #testModeBtn 
+{
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+div.options > .wordMode, #testModeBtn {
+    color: var(--yellow);
+    background: var(--red);
+    border-radius: 0.5em;
+}
+
+div#tips {
+    width: auto;
+    height: 150px;
+    border-radius: 1em;
+    background-color: var(--orange);
+    box-shadow:
+  0 2.8px 2.2px rgba(109, 84, 56, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12);
+}
+div #tipsDisplay {
+    margin: 0;
+    padding: 1em;
+    color: var(--black);
+}
+footer .copyright {
+    font-family: var(--font-scp);
+    font-size: 0.7em;
+    margin: auto 10px;
+    color: var(--yellow);
+    grid-column-start: 1;
+    justify-self: center;
+}
