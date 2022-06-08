@@ -44,7 +44,7 @@
         <button name="Restart" id="restartBtn" onclick="newQuote()">Redémarrer</button>
       </div>
       <!-- OVERLAY PANEL ON APP -->
-      <div id="blurPanel" class="blur-panel" style="display: none;">
+      <div id="blurPanel" class="blur-panel">
         <span class="fa-solid fa-arrow-pointer"></span>
         <p>Cliquez pour refair le test</p>
       </div>
@@ -52,17 +52,18 @@
       <div class="content">
         <div class="results">
           <div class="curr-results">
-            <span class="fa-solid fa-gauge-high"> : </span>
-            <p id="wpmLabel" class="results-label">00</p><p> MPM</p>
-            <span class="fas fa-circle-check"> : </span>
-            <p id="accLabel" class="results-label">00</p><p> %</p>
+            <span class="fa-solid fa-gauge-high"></span>
+            <p id="wpmLabel" class="results-label">00</p>
+            <span class="fas fa-circle-check">  </span>
+            <p id="accLabel" class="results-label">00</p>
             <span class="fas fa-calendar"> : </span>
             <p id="currentTime" class="results-label">00:00:00</p>
           </div>
           <div class="past-resutls">
             <h4>Historiques</h4>
-            
-            <p></p>
+            <ul id="historyTable">
+            </ul>
+            <p id="tempRes"></p>
           </div>
         </div>
         <div class="options">
@@ -70,8 +71,8 @@
           <button class="wordMode" id="toggleModeBtn" onclick="toggleWordsMode()">Mots français</button><br>
           <p>Mode de test: </p>
           <button id="testModeBtn" onclick="toggleTestMode()">Nombre de mot</button>
-          <button id="wordsBtnOne" class="wordsOptionBtn" onclick="setBtnOne()">20</button>
-          <button id="wordsBtnTwo" class="wordsOptionBtn active" onclick="setBtnTwo()">50</button>
+          <button id="wordsBtnOne" class="wordsOptionBtn active" onclick="setBtnOne()">20</button>
+          <button id="wordsBtnTwo" class="wordsOptionBtn" onclick="setBtnTwo()">50</button>
           <button id="wordsBtnThree" class="wordsOptionBtn" onclick="setBtnThree()">70</button>
 
           <button id="timerBtnOne" class="timerOptionBtn hidden" onclick="setTimerBtnOne()">15s</button>

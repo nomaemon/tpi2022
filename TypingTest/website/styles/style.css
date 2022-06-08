@@ -10,7 +10,7 @@
     display: none;
 }
 .active {
-    color: var(--yellow);
+    color: var(--yellow) !important;
 }
 .correct {
     color: var(--yellow);
@@ -50,6 +50,7 @@ div.app {
 
 /* OVERLAY PANEL ON APP */
 div.blur-panel {    
+    visibility: hidden;
     position: absolute;
     top: 0px;
     left: 50%;
@@ -156,11 +157,14 @@ p.results-label {
 .curr-results > #currentTime {
     grid-column-start: 2;
     grid-column-end: 3;
+    font-size: 0.9em;
 }
 div.past-resutls {
+    height: 164px;
     border-left: solid 1px var(--red);
     margin: 10px;
     padding-inline-start: 10px;
+    overflow: auto;
 }
 /* --- */
 div.past-resutls > 
@@ -168,6 +172,17 @@ h4
 {
     color: var(--orange);
     margin: 0 auto 10px auto;
+}
+ul#historyTable > li {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    color: var(--orange);
+    font-size: 0.6em;
+}
+#tempRes {
+    font-size: 0.8em;
+    color: var(--red);
 }
 
 div.options {
@@ -177,6 +192,7 @@ div.options >
 .wordsOptionBtn, .timerOptionBtn, .wordMode, #testModeBtn 
 {
     background: none;
+    color: var(--red);
     border: none;
     padding: 8px;
     cursor: pointer;

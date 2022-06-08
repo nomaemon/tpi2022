@@ -55,35 +55,33 @@ const wordsLib = [
 "naissance","loup","renoncer","complètement","extraordinaire","veiller","transformer","tracer","chute","divers","résistance","contenter","naturellement","chemise","mince","siège","patron","as","calme","mériter","printemps","angoisse","précipiter","rompre","habitant","plein","métier","caresser","étouffer","note","animer","passé","fine","fixe","casser","fusil","rond","agent","fonder","roman","plante","franchir","abattre","discuter","fatiguer","réflexion","humide","consentir","accent","curieux","repas","regretter","étendue","profondément","joindre","secours","commencement","corde","secrétaire","vaincre",
 "saison","précieux","précis","consulter","haïr","repousser","paupière","certainement","tapis","noire","chasse","nerveux","exécuter","nul","commun","exposer","clef","claire","voyager","haute","renverser","sueur","âgé","rassurer","ferme","retomber","décrire","mentir","instinct","paquet","armer","drame","absolu","savoir","mine","vision","étaler","sentier","demain","beau","blond","essuyer","planche","précéder","dehors","salut","tâche","désigner","fin","abri","détacher","recueillir","rencontre","croiser","rouge","entretenir","visible","professeur","surveiller","perdu","réserver",,"bas","lien","queue","confondre","bande","grain","mensonge","dégager"
 ]
-const capsOffChars = ["abcdefghijklmnopqrstuvwxyz"]
-const capsOnChars = ["ABCDEFGHIJKLMNOPQRSTUVWZYZ"]
-const digits = ["0","1","2","3","4","5","6","7","8","9"]
-const symbols = ['$','£','?','-','~','.',',']
-//--character temporaire
+
+//--character lorem
 const tempChars = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz123456789abcdefghijklmnopqrstuvwxyz.,!?"
 
+//--HTML ELEMENTS IN CONST VARIABLES
 const quoteDisplayElement = document.getElementById('quoteDisplay')
 const quoteInputElement = document.getElementById('inputQuote')
 const timerElement = document.getElementById('timer')
 const usernameElement = document.getElementById('username')
 const greetMessageElement = document.getElementById('greetMessage')
 const wpmLabelElement = document.getElementById('wpmLabel')
+const accLabelElement = document.getElementById('accLabel')
 const toggleModeElement = document.getElementById('toggleModeBtn')
 const currentTimeElement = document.getElementById('currentTime')
 const toggleTestModeElement = document.getElementById('testModeBtn')
 const quoteElement = document.getElementById('quote')
 const blurPanelElement = document.getElementById('blurPanel')
-
+const tipsDisplayElement = document.getElementById('tipsDisplay')
 const wordsBtnOneElement = document.getElementById('wordsBtnOne')
 const wordsBtnTwoElement = document.getElementById('wordsBtnTwo')
 const wordsBtnThreeElement = document.getElementById('wordsBtnThree')
-
 const timerBtnOneElement = document.getElementById('timerBtnOne')
 const timerBtnTwoElement = document.getElementById('timerBtnTwo')
 const timerBtnThreeElement = document.getElementById('timerBtnThree')
-//--SELECT ALL ELEMENTS CONTAINING THIS CLASS USING "QUERYSELECTORALL"
 const wordsBtnElements = document.querySelectorAll('.wordsOptionBtn')
 const timerOptionBtnElements = document.querySelectorAll('.timerOptionBtn')
+const historyResultsElement = document.getElementById("historyTable").querySelectorAll("li")
 
 //--MAIN MODES
 const testMode = {
@@ -97,6 +95,7 @@ const wordCount = {
     words50:50,
     words70:70
 }
+
 //--SETTING TIME LIMIT OPTION WHEN IN TIMER MODE
 const timerLimit = {
     timer15:15,
@@ -105,70 +104,103 @@ const timerLimit = {
 }
 
 //--INITIALIZING RESULT ATTRIBUTS
-let timer = 00
 let wpm = 00
 let acc = 00
-let missed = 0
-
 
 //--DEFAULT VALUES
 let selectedTestMode = testMode.mode1
-let selectedWordCount = wordCount.words50
+let selectedWordCount = wordCount.words20
 let selectedTime = timerLimit.timer30
 let remainingTime = selectedTime
+let timer
 let timerRunning = false
-let isTyping = false
-let interval
 
-// BEFOR STARTING
-// ready a new quote to type everytime user refresh the website
-newQuote()
+//--BEFOR STARTING
+//--ready a new quote to type everytime user refresh the website
+window.addEventListener('load', (event) => {
+    checkCookie()
+    newQuote()
+    
+})
+
+//--KEYBOARD SHORTCUTS
+document.addEventListener('keydown', function(event) {
+    //--Tab key will trigger getNewQuote
+    switch (event.key) {
+        case "Tab": 
+            newQuote();
+            //--prevent the conflict between this and the browser's-
+            //---key bindings (put in case for not interfering with other keys)
+            event.preventDefault();  
+            break;
+        case "Escape":
+            showResults()
+            break;
+        default: 
+            return;
+    }
+})
 
 //--START TYPING
 quoteInputElement.addEventListener('input', () =>{
+    //--only when the timer is not runnning we can initiate startTimer function
+    //--this prevents reacalling the function everytime we type a character
+    if (!timerRunning){
+        timer = setInterval(startTimer, 1000)
+        timerRunning = true
+    }
+    //--select every elemnt in quoteDisplayElement which is a span
+    //--get what's being typed in quoteInputElement and split them by "" which separate each character
     const quoteArray = quoteDisplayElement.querySelectorAll('span')
     const inputArray = quoteInputElement.value.split('')
 
     let correct = true
+    //--for each span element in quoteArray, get its index
     quoteArray.forEach((spannedChar, index) => {
+        //--same index for input characters saved in inputChar
         const inputChar = inputArray[index]
+        //--remove classes of nothing type or used backspace
         if (inputChar == null){
-            spannedChar.classList.remove('correct')
-            spannedChar.classList.remove('incorrect')
+            spannedChar.classList.remove('incorrect','correct')
             correct = false
         } else if (inputChar === spannedChar.innerText){
-                spannedChar.classList.add('correct')
-                spannedChar.classList.remove('incorrect')
+            //--add correct class if typed character is the same as the displayed one
+            spannedChar.classList.add('correct')
+            spannedChar.classList.remove('incorrect')
         } else {
+            //--add incorrecte class if typed character is not the same as the displayed one
+            //--increment "missed" characters by one
             spannedChar.classList.remove('correct')
             spannedChar.classList.add('incorrect')
-            document.getElementById('tipsDisplay').innerText = missed
             correct = false
         }
     })
+    var correctCharsCount = quoteDisplayElement.querySelectorAll('.correct').length
+    var incorrectCharsCount = quoteDisplayElement.querySelectorAll('.incorrect').length
+    var inputCharsCount = correctCharsCount + incorrectCharsCount
 
-    // call timer function and start counting
-    var time = (function() {
-        var exec = false
-        return function() {
-            if (!exec) {
-                exec = true
-                setInterval(startTimer, 1000)
-            }
+    //--if all characters are typed, call showResults() function
+    if (inputCharsCount == quoteArray.length && selectedTestMode == testMode.mode1) {
+        showResults()
+    } else if (inputCharsCount == quoteArray.length && selectedTestMode == testMode.mode2) {
+        if (remainingTime > 0) {
+            newQuote()
+        } else {
+            showResults()
         }
-    })
-    time()
-
-    //--if all characters were typed correctely, get new quote
-    //--can use it for later
-    if (correct && selectedTestMode == 1) {
-        saveResults()
-        // TODOO: panel doesnt show up
     }
+    //--calculate words per minutes (NOTE: what i have here is Characters per minute, WPM will be implemented later)
+    wpm = Math.round((((inputCharsCount) / 5 ) / (selectedTime - remainingTime)) * 60)
+    wpmLabelElement.innerText = wpm + " MPM"
+    //--calculeate the accuracy
+    acc = Math.round(100 * (correctCharsCount - incorrectCharsCount) / inputCharsCount)
+    accLabelElement.innerText = acc + " %"
+
 })
-// CLICK ON DISPLAYED TEXT TO FOCUS ON INPUT FIELD AND START TYPING 
-// (BECAUSE WE NO LONGER HAVE THE INPUT ELEMENT)
+//--CLICK ON DISPLAYED TEXT TO FOCUS ON INPUT FIELD AND START TYPING 
+//--(BECAUSE WE NO LONGER HAVE THE INPUT ELEMENT)
 quoteDisplayElement.addEventListener('click', () => {
+    quoteInputElement.disabled = false
     quoteInputElement.focus()
 })
 
@@ -176,108 +208,108 @@ quoteDisplayElement.addEventListener('click', () => {
 blurPanelElement.addEventListener('click', () => {
     newQuote()
     quoteInputElement.focus()
-    blurPanelElement.style.display = "none"
+    blurPanelElement.style.visibility = "hidden"
 })
 
-// //--MAKE A SLEEP FUNCTION
-// function sleep(milliseconds) {
-//     const date = Date.now()
-//     let currentDate = null
-//     do {
-//         currentDate = Date.now()
-//     } while (currentDate - date < milliseconds)
-// }
-
-// START COUNTING DOWN TIMER
+//--START COUNTING DOWN TIMER
 function startTimer() {
     if(remainingTime > 0) {
         remainingTime--
         timerElement.innerText = remainingTime
     } else {
         clearInterval(timer)
+        showResults()
     }
-
-    // if(remainingTime > 0) {
-    //     remainingTime--;
-    //     timerElement.innerText = remainingTime;
-        
-    // }else {
-    //     clearInterval(timer)
-    // }
 }
 
-// CURRENT TIME
+//--CURRENT TIME
 function dateNow() {
-    // every time this function is called, it gets the current time and date
-    // used when a test result is saved
+    //--every time this function is called, it gets the current time and date
+    //--used when a test result is saved
     var date = new Date()
     let localDateNow = date.toLocaleString()
     return localDateNow
 }
 
-// GET RANDOM FRENCH WORD
+//--GET RANDOM FRENCH WORD
 function getRandomWords() {
-
-    // push random letter "selectedWordCount" times while "join" a space between them
+    //--push random letter "selectedWordCount" times while 
     var sentence = []
-    var x = selectedWordCount
-    while(--x) sentence.push(wordsLib[Math.floor(Math.random() * wordsLib.length)])
+    var countWords = selectedWordCount
+    while(--countWords) sentence.push(wordsLib[Math.floor(Math.random() * wordsLib.length)])
 
-    // send the value to span function
+    //--send the value to span function
     quoteDisplayElement.innerText = ""
     let nonspanChar = sentence.join(" ")
     spanCharacters(nonspanChar)
 }
 
-// GET LOREM IPSUM WORDS
+//--GET LOREM IPSUM WORDS
 function loremQuote() {
-    // loop "selectedWordCount" times to make random words with random letters
+    //--loop "selectedWordCount" times to make random words with random letters
     var ranQuote = "";
     for (n = 0; n < selectedWordCount; n++) {
-        // random number between 3 and 6
+        //--random number between 3 and 6
         let x = Math.floor(Math.random()*6 | 0)+3
         for (i = 0; i < x; i++) {
             ranQuote += tempChars.charAt(Math.floor(Math.random() * tempChars.length));
         }
-        // to add space after each word
+        //--to add space after each word
         ranQuote += " ";
     }
-    // TODO: add multiple words
-    // pass the value to "spanCharacters" function
+    //--TODO: add multiple words
+    //--pass the value to "spanCharacters" function
     quoteDisplayElement.innerText = ""
     let nonspanChar = ranQuote
     spanCharacters(nonspanChar)
 }
-//  PUT EACH LETTER IN A SPAN ELEMENT SO ITS EASY TO COMPRARE THEM WITH WHAT -
-// -IS GOING TO BE TYPED
+//--PUT EACH LETTER IN A SPAN ELEMENT SO ITS EASY TO COMPRARE THEM WITH WHAT -
+//---IS GOING TO BE TYPED
 function spanCharacters(nonspanChar) {
-    // create span element for each character and then give them a "spannedClass" class name. 
-    // then append those created spans to the "quoteDisplayElement" which is its parent
+    //--create span element for each character and then give them a "spannedClass" class name. 
+    //--then append those created spans to the "quoteDisplayElement" which is its parent
     for (character of nonspanChar) {
         const wordCharacter = document.createElement('span')
         wordCharacter.className = "spannedChars"
+        //--Add space value
+        if (character == " ") {
+            wordCharacter.classList.add("space")
+        }
         wordCharacter.innerText = character
         quoteDisplayElement.appendChild(wordCharacter)
     }
 }
-// RESTART BUTTON FUNCTION
+
+//--RESTART BUTTON FUNCTION
 function newQuote() {
     quoteInputElement.value = ""
+    quoteInputElement.disabled = false
     quoteInputElement.focus()
-    timerElement.innerText = selectedTime
-    // of "toggleModeElement" has a 'LoremMode' class, get the "loremQuote" quotes
-    // else, get words from "getRandomWords" function, aka Normal Mode
+    charIndex = 00
+    //--reset timer if we are in words mode
+    if (selectedTestMode == testMode.mode1) {
+        clearInterval(timer)
+        remainingTime = selectedTime
+        timerElement.innerText = selectedTime
+        timerRunning = false
+    } else {
+        //--don't reset timer if we are in timer mode
+    }
+    
+    //--of "toggleModeElement" has a 'LoremMode' class, get the "loremQuote" quotes
+    //--else, get words from "getRandomWords" function, aka Normal Mode
     if (toggleModeElement.classList.contains('loremMode') == true) {
         loremQuote()        
     }else {
         getRandomWords()
     }
 }
-// TOGGLE MODE CHAGE
+
+//--TOGGLE MODE CHAGE
 function toggleWordsMode() {
-    // toggle and add "loremMode" class in toggleModeElement
+    //--toggle and add "loremMode" class in toggleModeElement
     toggleModeElement.classList.toggle('loremMode')
-    // if the name of the button is "Normal", change it into "Lorem", else trun it back into "Normal"
+    //--if the name of the button is "Normal", change it into "Lorem", else trun it back into "Normal"
     if (toggleModeElement.innerHTML === "Mots français") {
         toggleModeElement.innerHTML = "Mots Lorem"
     } else {
@@ -285,23 +317,26 @@ function toggleWordsMode() {
     }
     newQuote()
 }
-// SET MODE BETWEEN TIMER AND WORD COUNT
+
+//--SET MODE BETWEEN TIMER AND WORD COUNT
 function toggleTestMode() {
-    // toggle class name "timerMode" for the test mode button
+    //--toggle class name "timerMode" for the test mode button
     toggleTestModeElement.classList.toggle('timerMode')
-    // if the button had "words count mode" name, change it into "Timer mode"
-    // and remove hidden class names from timer buttons
-    // and add the hidden class name into words cound buttons
+    //--if the button had "words count mode" name, change it into "Timer mode"
+    //--and remove hidden class names from timer buttons
+    //--and add the hidden class name into words cound buttons
     if (toggleTestModeElement.innerHTML === "Nombre de mot") {
         toggleTestModeElement.innerHTML = "Compt à rebours"
+        selectedTestMode = testMode.mode2
         for (var i = 0; i < timerOptionBtnElements.length; i++){
             timerOptionBtnElements[i].classList.remove('hidden')
             wordsBtnElements[i].classList.add('hidden')
         }
     } else {
-        // else, change the burron name back into "Word count mode"
-        // remove hidden class from words buttons
-        // and add that class name into timer buttons
+        selectedTestMode = testMode.mode1
+        //--else, change the burron name back into "Word count mode"
+        //--remove hidden class from words buttons
+        //--and add that class name into timer buttons
         toggleTestModeElement.innerHTML = "Nombre de mot"
         for (var i = 0; i < timerOptionBtnElements.length; i++) {
             timerOptionBtnElements[i].classList.add('hidden')
@@ -310,7 +345,7 @@ function toggleTestMode() {
     }
 }
 
-// SET WORDS NUMBER IN WORD MODE
+//--SET WORDS NUMBER IN WORD MODE
 function setBtnOne() {
     selectedWordCount = wordCount.words20
     wordsBtnOneElement.classList.add('active')
@@ -332,7 +367,7 @@ function setBtnThree() {
     wordsBtnThreeElement.classList.add('active')
     newQuote()
 }
-// SET TIMER VALUE IN TIMER MODE
+//--SET TIMER VALUE IN TIMER MODE
 function setTimerBtnOne() {
     selectedTime = timerLimit.timer15
     timerBtnOneElement.classList.add('active')
@@ -361,23 +396,80 @@ function setTimerElement() {
     timerElement.innerText = remainingTime
 }
 
+
 //--SAVE RESULTS
-function saveResults() {
+function showResults() {
+    //--saving date value
+    var date = new Date()
+    remainingTime = selectedTime
+
+    //--show the current test date
+    currentTimeElement.innerHTML = date.toDateString()
+
     //--show blured panel
-    blurPanelElement.style.display = "yes !important"
-    wpmLabelElement.innerText = "helllllo"
+    blurPanelElement.style.visibility = "visible"
+    quoteInputElement.disabled = true
+    clearInterval(timer)
+    wpmLabelElement.innerText = wpm
     wpmLabelElement.style.color = "#a64e46"
+
+    //--set new cookies
+    setCookie("wpm",wpm + " mpm",30)
+    setCookie("acc",acc + " %",30)
+    setCookie("date",date.toLocaleString(),30)
+
+    //--temporairly solution to show test histories
+    document.getElementById("tempRes").innerHTML += `<p>${date.toLocaleString()} | ${wpm}mpm | ${acc}%</p>`
 }
 
+//--COOKIES
+//--this function sets a ne cookie based on parametere it gets
+function setCookie(name, value, expireDay) {
+    //--we encode value in order to remove semicolons and commas 
+    var cookie = name + "=" + encodeURIComponent(value)
+    //--now we set the expireDay value: when the cookie expires
+    if (typeof expireDay === "number"){
+        cookie += "; max-age=" + (expireDay * 24 * 60 * 60)
+        document.cookie = cookie
+    }
+}
 
-// USERCOOKIES
-// let username = prompt("Hi! Type your name if you want to login:", "")
-// if (username == "" || username == null && usernameCookie == "") {
-//     greetMessageElement.innerText = "You are not Logged! refresh to login"
-//     greetMessageElement.style.color = "Red"
-// } else {
-//     var usernameCookie = document.cookie = "username=" + username
-//     usernameElement.innerText = usernameCookie
-//     usernameElement.style.color = "Green"
+function getCookie(name) {
+    //--split cookies by ";" which will left us with name=value pairs and save them into an array
+    var cookiesArray = document.cookie.split(";")
+
+    //--now we loop through our array element
+    for(var c = 0; c < cookiesArray.length; c++) {
+        //--saving each pairs to gether and remove the "=" between them
+        var cookiePair = cookiesArray[c].split("=")
+        //--if there's a white space, remove it and compare it to the string we give to it
+        if (name == cookiePair[0].trim()){
+            return decodeURIComponent(cookiePair[1])
+        }
+    }
+}
+
+function checkCookie() {
+    //--search for a cookie name in getCookie function, gets null if it didn't find it
+    var cUsername = getCookie("username")
+    
+    //--if the cookie was found, change the welcome message to "Welcome again $username"
+    if (cUsername != null && cUsername != "") {
+        usernameElement.innerText = " again " + cUsername
+    } else {
+        //--if no value was found in getCookie (so the value we have is null)
+        //--user gets a prompt and he needs to type his name again
+        //--then we cant use out setCookie funciton to set a new cookie for him
+        cUsername = prompt("Hi! Type your name if you want to login:", "")
+        setCookie("username", cUsername, 30)
+        usernameElement.innerText = cUsername
+    }
+}
+
+// function showResultCookies(date) {
+//     var cDate = date
+//     var createLiElements = document.createElement('li')
+    
+
+//     historyResultsElement.appendChild 
 // }
-
