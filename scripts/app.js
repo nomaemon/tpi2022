@@ -57,7 +57,7 @@ const wordsLib = [
 ]
 
 //--character lorem
-const tempChars = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz123456789abcdefghijklmnopqrstuvwxyz.,!?"
+const loremChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz123456789abcdefghijklmnopqrstuvwxyz.,!?"
 
 //--HTML ELEMENTS IN CONST VARIABLES
 const quoteDisplayElement = document.getElementById('quoteDisplay')
@@ -222,15 +222,6 @@ function startTimer() {
     }
 }
 
-//--CURRENT TIME
-function dateNow() {
-    //--every time this function is called, it gets the current time and date
-    //--used when a test result is saved
-    var date = new Date()
-    let localDateNow = date.toLocaleString()
-    return localDateNow
-}
-
 //--GET RANDOM FRENCH WORD
 function getRandomWords() {
     //--push random letter "selectedWordCount" times while 
@@ -252,7 +243,7 @@ function loremQuote() {
         //--random number between 3 and 6
         let x = Math.floor(Math.random()*6 | 0)+3
         for (i = 0; i < x; i++) {
-            ranQuote += tempChars.charAt(Math.floor(Math.random() * tempChars.length));
+            ranQuote += loremChars.charAt(Math.floor(Math.random() * loremChars.length));
         }
         //--to add space after each word
         ranQuote += " ";
@@ -285,7 +276,6 @@ function newQuote() {
     quoteInputElement.value = ""
     quoteInputElement.disabled = false
     quoteInputElement.focus()
-    charIndex = 00
     //--reset timer if we are in words mode
     if (selectedTestMode == testMode.mode1) {
         clearInterval(timer)
