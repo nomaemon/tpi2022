@@ -1,6 +1,7 @@
-# TypingTest (school project)
-This is a tying test app made for my school project
+# TypingTest
+This is a tying test app made for my school project for the purpose of learning JavaScript
 
+ 
 
----
-*all sources will be credited*
+____
+_All icons made by Roundicons and Freepik from www.flaticon.com_
